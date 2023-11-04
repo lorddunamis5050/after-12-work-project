@@ -112,7 +112,28 @@ p {
     color: #333;
 }
 
-.delete{
-    color: red;
-    cursor: pointer;
+
+
+.floating-buttons {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 50%;
+    gap: 10px; 
+}
+
+
+.floating-buttons a {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.floating-buttons a:hover {
+    background-color: #555;
 }

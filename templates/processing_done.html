@@ -1,12 +1,88 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Processing Done</title>
+    <!-- Include Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <!-- Include Poppins font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 2em;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #000000;
+            margin-bottom: 2em;
+        }
+
+        p {
+            color: #000000;
+            margin: 2em 0;
+            margin-left: 3em;
+        }
+
+        /* Neumorphism inspired button */
+        .btn {
+            background: #e0e0e0;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #000000;
+            box-shadow:  10px 10px 15px #bebebe, 
+                        -10px -10px 15px #ffffff;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .btn:hover {
+            box-shadow:  5px 5px 10px #bebebe, 
+                        -5px -5px 10px #ffffff;
+        }
+
+        .btn i {
+            margin-bottom: 8px;
+            color: #000000;
+            font-size: 24px;
+        }
+
+        .buttons-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        a{
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Processing Complete</h1>
-    <p>Your file has been processed.</p>
-    <p><a href="{{ url_for('download_file', filename='output/processed_data.xlsx') }}">Download Processed Excel File</a></p>
-    <p><a href="{{ url_for('idle_time_analysis') }}">Check Idle Time Analysis</a></p>
+    <div>
+        <h1>Processing Complete</h1>
+        <p>Your file has been processed.</p>
+        <div class="buttons-container">
+            <a class="btn" href="{{ url_for('download_file', filename='output/processed_data.xlsx') }}"><i class="fas fa-file-excel"></i>Download <br> Excel File</a>
+            <a class="btn" href="{{ url_for('idle_time_analysis') }}"><i class="fas fa-clock"></i> Idle Time <br>Analysis</a>
+        </div>
+    </div>
+</body>
 
 </html>
