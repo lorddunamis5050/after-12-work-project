@@ -10,7 +10,7 @@ CSV_HEADER_ROW = 2
 
 # Load the CSV file into a Pandas DataFrame with header starting from row 4
 df = pd.read_csv(CSV_FILE_PATH, header=CSV_HEADER_ROW)
-print(df.head())
+
 
 # Parse the 'DateTime' column with the correct format
 df['DateTime'] = pd.to_datetime(df['DateTime'], format='%I:%M %p')

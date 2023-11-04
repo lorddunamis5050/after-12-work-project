@@ -1,0 +1,118 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    margin: 0;
+}
+
+#loading-spinner {
+    display: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    margin: 20px 0;
+}
+
+input[type="file"] {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+input[type="submit"] {
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+input[type="submit"]:hover {
+    background-color: #474747;
+}
+
+img {
+    max-width: 100%;
+}
+
+p {
+    text-align: center;
+}
+
+
+.file-input-container {
+    position: relative;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* You can style the drop area here */
+.file-input-container:hover {
+    border: 2px dashed #0070c9;
+    background-color: #fff;
+}
+
+/* Style for the text inside the drop area */
+.file-input-text {
+    font-size: 16px;
+    color: #333;
+}
+
+.delete{
+    color: red;
+    cursor: pointer;
+}

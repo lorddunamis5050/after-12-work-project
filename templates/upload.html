@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    
+    
+
+</head>
+<body>
+    <header>
+        <h1>N10 Operations</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Upload A LogLookup File. (After 12)</h2>
+        <div id="loading-spinner" style="display: none;">
+            <img src="{{ url_for('static', filename='loading-spinner.gif') }}" alt="Loading" width="100" height="100">
+            <p>Processing...</p>
+        </div>
+    
+        <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="file-input-container">
+                <span class="file-input-text">Drag and drop or click to select a file</span>
+                <input type="file" name="file" class="file-input" id="file-input" onchange="processFile()">
+                
+            </div>
+           
+        </form>
+    
+        <div id="file-selected-message" style="display: none;">
+            <p>File selected!</p>
+        </div>
+
+    
+        <script>
+            
+function processFile() {
+                // Display the "File selected!" message
+    document.getElementById('file-selected-message').style.display = 'block';
+    
+
+    // Access the file input element
+    var fileInput = document.getElementById('file-input');
+
+    // Check if a file is selected
+    if (fileInput.files.length > 0) {
+        // Create a FormData object and append the selected file
+        var formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        // Show the loading spinner
+        document.getElementById('loading-spinner').style.display = 'block';
+
+        // Send the file to the server for processing via AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/upload', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // File processed successfully
+                // Redirect to the processing_done route
+                window.location.href = '/processing_done';
+            } else {
+                // Handle errors or display an error message
+            }
+            // Hide the loading spinner
+            document.getElementById('loading-spinner').style.display = 'none';
+        };
+        xhr.send(formData);
+                }
+            }
+        </script>
+    </div>
+    <script src="{{ url_for('static', filename='drag_and_drop.js') }}"></script>
+    <script src="{{ url_for('static', filename='practice.js') }}"></script>
+</body>
+</html>

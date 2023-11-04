@@ -12,13 +12,13 @@ df = pd.read_csv(csv_file, header=2)
 df['DateTime'] = pd.to_datetime(df['DateTime'], format='%I:%M %p')
 
 # Define your desired time range for PUTWALL PICKING
-start_time_putwall = pd.to_datetime('8:00 PM', format='%I:%M %p')
-end_time_putwall = pd.to_datetime('11:59 PM', format='%I:%M %p')
+start_time_putwall = pd.to_datetime('12:00 AM', format='%I:%M %p')
+end_time_putwall = pd.to_datetime('6:30 AM', format='%I:%M %p')
 
 
 # Define your desired time range for REGULAR PICK
-start_time_regular = pd.to_datetime('8:00 PM', format='%I:%M %p')
-end_time_regular = pd.to_datetime('11:59 PM', format='%I:%M %p')
+start_time_regular = pd.to_datetime('12:00 AM', format='%I:%M %p')
+end_time_regular = pd.to_datetime('6:30 AM', format='%I:%M %p')
 
 # Initialize DataFrames to store pick data
 putwall_picking_per_user = pd.DataFrame(columns=['UserID', 'PutwallPickingQuantity'])
@@ -107,8 +107,8 @@ replenishment_pick_df = df[df['IsReplenishmentPick']]
 replenishment_pick_per_user = replenishment_pick_df.groupby('UserID')['Quantity'].sum().reset_index(name='ReplenishmentPickQuantity')
 
 # Define your desired time range for hourly pick totals
-start_time_hourly = pd.to_datetime('8:00 PM', format='%I:%M %p')
-end_time_hourly = pd.to_datetime('11:59 PM', format='%I:%M %p')  # Updated end time to 11:59 PM
+start_time_hourly = pd.to_datetime('12:00 AM', format='%I:%M %p')
+end_time_hourly = pd.to_datetime('6:30 AM', format='%I:%M %p')  # Updated end time to 11:59 PM
 
 # Filter rows based on the specified time range for hourly pick totals
 filtered_df_hourly = df[(df['DateTime'] >= start_time_hourly) & (df['DateTime'] <= end_time_hourly)]

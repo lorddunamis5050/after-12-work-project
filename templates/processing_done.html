@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Processing Done</title>
+</head>
+<body>
+    <h1>Processing Complete</h1>
+    <p>Your file has been processed.</p>
+    <p><a href="{{ url_for('download_file', filename='output/processed_data.xlsx') }}">Download Processed Excel File</a></p>
+    <p><a href="{{ url_for('idle_time_analysis') }}">Check Idle Time Analysis</a></p>
+
+</html>

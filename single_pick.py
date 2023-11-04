@@ -18,10 +18,11 @@ def perform_single_pick_analysis(df , book):
         packslip = row['Packslip']
         datetime = row['DateTime']
 
-        if action == 'REPLNISH' and len(str(packslip)) >= 7 and str(packslip)[6] == 'S' and datetime >= START_TIME_PUTWALL and datetime <= END_TIME_PUTWALL:
-            return 'SINGLE PICK'
+        if (action == 'REPLNISH' and len(str(packslip)) >= 7 and str(packslip)[6] == 'S' and datetime >= START_TIME_PUTWALL and datetime <= END_TIME_PUTWALL) or packslip == 'LATE':
+         return 'SINGLE PICK'
 
         return action
+
 
 
     # Apply the function to the DataFrame to identify "SINGLE PICK"

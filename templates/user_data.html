@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Data</title>
+    <style>
+        .highlight-red {
+            background-color: red;
+            color: white; /* Change text color for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <h1>User Data for {{ username }}</h1>
+    
+    <table border="1">
+        <tr>
+            <th>UserID</th>
+            <th>Product</th>
+            <th>BinLabel</th>
+            <th>Action</th>
+            <th>Quantity</th>
+            <th>Packslip</th>
+            <th>Reference2</th>
+            <th>Reference3</th>
+            <th>DateTime</th>
+            <th>ClientName</th>
+            <th>Location</th>
+            <th>Time Difference</th>
+        </tr>
+        {% for index, row in user_data.iterrows() %}
+            <tr  {% if row['TimeDiff'] > 14 %} class="highlight-red"{% endif %} >
+                <td>{{ row['UserID'] }}</td>
+                <td>{{ row['Product'] }}</td>
+                <td>{{ row['BinLabel'] }}</td>
+                <td>{{ row['Action'] }}</td>
+                <td>{{ row['Quantity'] }}</td>
+                <td>{{ row['Packslip'] }}</td>
+                <td>{{ row['Reference2'] }}</td>
+                <td>{{ row['Reference3'] }}</td>
+                <td>{{ row['DateTime'].strftime('%H:%M:%S') }}</td>
+                <td>{{ row['ClientName'] }}</td>
+                <td>{{ row['Location'] }}</td>
+                <td>{{ row['TimeDiff'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    
+    <p><a href="{{ url_for('idle_time_analysis') }}">Check Another Picker</a></p>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
