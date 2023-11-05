@@ -1,60 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-    <title>User Data</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='user_data.css') }}">
+        <title>User Data</title>
 
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f0f0f0;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #e9e9e9;
-        }
-        #highlight-red {
-            background-color: #ff6666;
-            color: white;
-        }
-        a {
-            display: block;
-            margin: 10px 0;
-            text-decoration: none;
-            color: #333;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+       
     </style>
 </head>
+
 <body>
     <h1>User Data for {{ username }}</h1>
-    
+
     <table>
         <tr>
             <th>UserID</th>
@@ -71,20 +35,20 @@
             <th>Time Difference</th>
         </tr>
         {% for index, row in user_data.iterrows() %}
-            <tr {% if row['TimeDiff'] > 14 %} class="highlight-red" id="highlight-red" {% endif %}>
-                <td>{{ row['UserID'] }}</td>
-                <td>{{ row['Product'] }}</td>
-                <td>{{ row['BinLabel'] }}</td>
-                <td>{{ row['Action'] }}</td>
-                <td>{{ row['Quantity'] }}</td>
-                <td>{{ row['Packslip'] }}</td>
-                <td>{{ row['Reference2'] }}</td>
-                <td>{{ row['Reference3'] }}</td>
-                <td>{{ row['DateTime'].strftime('%H:%M:%S') }}</td>
-                <td>{{ row['ClientName'] }}</td>
-                <td>{{ row['Location'] }}</td>
-                <td>{{ row['TimeDiff'] }}</td>
-            </tr>
+        <tr {% if row['TimeDiff']> 14 %} class="highlight-red" id="highlight-red" {% endif %}>
+            <td>{{ row['UserID'] }}</td>
+            <td>{{ row['Product'] }}</td>
+            <td>{{ row['BinLabel'] }}</td>
+            <td>{{ row['Action'] }}</td>
+            <td>{{ row['Quantity'] }}</td>
+            <td>{{ row['Packslip'] }}</td>
+            <td>{{ row['Reference2'] }}</td>
+            <td>{{ row['Reference3'] }}</td>
+            <td>{{ row['DateTime'].strftime('%H:%M:%S') }}</td>
+            <td>{{ row['ClientName'] }}</td>
+            <td>{{ row['Location'] }}</td>
+            <td>{{ row['TimeDiff'] }}</td>
+        </tr>
         {% endfor %}
     </table>
 
@@ -92,5 +56,58 @@
         <a href="{{ url_for('idle_time_analysis') }}">Check Another Picker</a>
         <a href="/">Back to Home</a>
     </div>
+    <!-- Arrow button for scrolling to red rows -->
+    <div class="arrow-button" onclick="scrollToNextIdleTime()">
+
+        <span class="material-symbols-outlined">
+            expand_circle_down
+        </span>
+    </div>
+
+    <!-- Tooltip element -->
+    <div class="tooltip" id="arrowTooltip">Click the arrow to view idle time periods
+        <button class="close-btn" onclick="closeTooltip()"> <span class="material-symbols-outlined">
+                cancel
+            </span></button>
+
+    </div>
+
+
+    <script>
+        let currentIndex = 0; // Keeps track of the current highlighted row
+        const idleRows = document.querySelectorAll('#highlight-red'); // Select all highlighted rows
+
+        function scrollToNextIdleTime() {
+            if (idleRows.length === 0) return; // Do nothing if no highlighted rows
+
+            const nextIdleRow = idleRows[currentIndex]; // Get the next row to scroll to
+            nextIdleRow.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Smooth scroll to the row
+
+            currentIndex++; // Increment the index
+            if (currentIndex >= idleRows.length) {
+                currentIndex = 0; // Reset the index if it's the last row
+            }
+        }
+
+        window.onload = function () {
+            setTimeout(function () {
+                var tooltip = document.getElementById('arrowTooltip');
+                tooltip.classList.add('visible'); // Add the class that starts the animation
+            }, 500); // Delay of 0.5 seconds
+        };
+
+        function closeTooltip() {
+            var tooltip = document.getElementById('arrowTooltip');
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.opacity = '0';
+        }
+
+        function closeTooltip() {
+    var tooltip = document.getElementById('arrowTooltip');
+    tooltip.classList.remove('visible'); // Remove the class to hide the tooltip
+}
+
+    </script>
 </body>
+
 </html>
