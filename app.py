@@ -50,8 +50,8 @@ def idle_time_analysis():
         df['DateTime'] = pd.to_datetime(df['DateTime'], format='%I:%M %p')
 
         # Define the start and end times as time objects
-        start_time = pd.Timestamp('1900-01-01 20:00:00').time()  # 8:00 PM
-        end_time = pd.Timestamp('1900-01-01 23:59:59').time()    # 11:59:59 PM
+        start_time = pd.Timestamp('1900-01-01 00:00:00').time()  # 12:00 AM
+        end_time = pd.Timestamp('1900-01-01 07:00:00').time()    # 7:00 AM  
 
         # Extract the time part from DateTime
         df['Time'] = df['DateTime'].dt.time
