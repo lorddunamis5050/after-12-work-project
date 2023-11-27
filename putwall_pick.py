@@ -81,15 +81,13 @@ def perform_putwall_pick_analysis(df, book):
     lambda row: (row['PutwallPickingQuantity'] * 60) / row['Time'] if row['Time'] >= 30 else 0, axis=1
     )
 
-    # Calculate UPH for each user, using the highest time as the denominator
-    # putwall_picking_per_user['UPH'] = putwall_picking_per_user['PutwallPickingQuantity'] / highest_hours_worked
 
         # Convert both "PutwallPickingQuantity" and "UPH" values to their absolute values
     putwall_picking_per_user['PutwallPickingQuantity'] = abs(putwall_picking_per_user['PutwallPickingQuantity'])
-    putwall_picking_per_user['UPH'] = abs(putwall_picking_per_user['UPH'])
+    putwall_picking_per_user['UPH'] = abs(putwall_picking_per_user['UPH']).round(2)
 
     # Calculate the average UPH, excluding zeros
-    average_uph = putwall_picking_per_user.loc[putwall_picking_per_user['UPH'] > 0, 'UPH'].mean()
+    average_uph = putwall_picking_per_user.loc[putwall_picking_per_user['UPH'] > 0, 'UPH'].mean().round(2)
 
         # Replace NaN or infinite values with zero
     putwall_picking_per_user.replace([np.inf, -np.inf, np.nan], 0, inplace=True)
