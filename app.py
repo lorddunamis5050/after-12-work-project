@@ -157,4 +157,4 @@ def download_file(filename):
 if __name__ == '__main__':
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     os.makedirs(app.config['OUTPUT_FOLDER'], exist_ok=True)
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5001)
