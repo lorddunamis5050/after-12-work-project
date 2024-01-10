@@ -114,6 +114,9 @@ def upload_file():
         from putwall_pick import perform_putwall_pick_analysis
         perform_putwall_pick_analysis(df, book)
 
+        from single_packing import perform_single_pack_analysis
+        perform_single_pack_analysis(df, book)
+
         from regular_pick import perform_regular_pick_analysis
         perform_regular_pick_analysis(df, book)
 
@@ -131,6 +134,10 @@ def upload_file():
 
         from hourly_pick_totals import perform_hourly_pick_totals_analysis
         perform_hourly_pick_totals_analysis(df, book)
+
+        from singleunitspickedbyzone import perform_single_pick_byzone
+        perform_single_pick_byzone(df, book)
+
 
         # Save the Excel file
         book.save(output_excel_file)
