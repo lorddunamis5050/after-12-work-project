@@ -16,12 +16,11 @@ def calculate_pick_totals(df, action_filter):
     return pick_totals
 
 def perform_hourly_pick_totals_analysis(df, book):
-    # Define the pick types and corresponding action filters
+    # Define the pick types and corresponding action filters with 'Multi Pick' combined
     pick_types = {
-        'Regular Pick': ['REGULAR PICK'],
         'Single Pick': ['SINGLE PICK'],
         'Replenishment Pick': ['REPLENISHMENT PICK'],
-        'Putwall Pick': ['PUTWALL PICKING']
+        'Multi Pick': ['REGULAR PICK', 'PUTWALL PICKING'] 
     }
 
     # Create the "Total Units picked by hour" sheet if it doesn't exist
