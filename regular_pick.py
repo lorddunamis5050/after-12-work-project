@@ -6,7 +6,7 @@ def perform_regular_pick_analysis(df , book):
     # Define your desired time range for REGULAR PICK
     START_TIME_REGULAR = pd.to_datetime('12:00 AM', format='%I:%M %p')
     END_TIME_REGULAR = pd.to_datetime('6:30 AM', format='%I:%M %p')
-    
+
     # Initialize DataFrames to store regular pick data
     regular_pick_per_user = pd.DataFrame(columns=['UserID', 'RegularPickQuantity'])
 
