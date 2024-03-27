@@ -112,14 +112,15 @@ def upload_file():
 
         # Perform analysis for different pick types and add the results to the Excel workbook
 
-        from idle_time import perform_idle_time_analysis
-        perform_idle_time_analysis(df, book)
-
+        # Perform analysis for different pick types and add the results to the Excel workbook
         from putwall_pick import perform_putwall_pick_analysis
         perform_putwall_pick_analysis(df, book)
 
-        from replenishment_pick import perform_replenishment_pick_analysis
-        perform_replenishment_pick_analysis(df, book)
+        from single_packing import perform_single_pack_analysis
+        perform_single_pack_analysis(df, book)
+
+        from multi_pack import perform_multi_pack_analysis
+        perform_multi_pack_analysis(df, book)
 
         from regular_pick import perform_regular_pick_analysis
         perform_regular_pick_analysis(df, book)
@@ -127,25 +128,28 @@ def upload_file():
         from single_pick import perform_single_pick_analysis
         perform_single_pick_analysis(df, book)
 
+        
+
         from resolve import peform_resolve_analysis
         peform_resolve_analysis(df, book)   
 
+        from replenishment_pick import perform_replenishment_pick_analysis
+        perform_replenishment_pick_analysis(df, book)
+
+        from quick_move import peform_quick_move_analysis
+        peform_quick_move_analysis(df, book)
+
+        from idle_time import perform_idle_time_analysis
+        perform_idle_time_analysis(df, book)
 
         from hourly_pick_totals import perform_hourly_pick_totals_analysis
         perform_hourly_pick_totals_analysis(df, book)
 
-        from singleunitspickedbyzone import perform_single_pick_byzone
-        perform_single_pick_byzone(df, book)
-
-        from multi_pack import perform_multi_pack_analysis
-        perform_multi_pack_analysis(df, book)
-
-        from single_packing import perform_single_pack_analysis
-        perform_single_pack_analysis(df, book)
-
         from hourly_packs_total import perform_hourly_pack_totals_analysis
         perform_hourly_pack_totals_analysis(df, book)
-        
+
+        from singleunitspickedbyzone import perform_single_pick_byzone
+        perform_single_pick_byzone(df, book)
 
 
 

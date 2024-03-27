@@ -8,7 +8,7 @@ END_TIME = pd.to_datetime('6:30 AM', format='%I:%M %p')
 
 def calculate_pack_totals(df, action_filter):
     # Filter the DataFrame by action_filter and time range
-    filtered_df = df[(df['Action'].isin(action_filter)) & (df['DateTime'].dt.hour >= 20) & (df['DateTime'].dt.hour < 24)]
+    filtered_df = df[(df['Action'].isin(action_filter)) & (df['DateTime'].dt.hour >= 0) & (df['DateTime'].dt.hour < 7)]
     
     # Group by hour and sum quantities
     pack_totals = filtered_df.groupby(filtered_df['DateTime'].dt.hour)['Quantity'].apply(lambda x: abs(x).sum()).to_dict()
@@ -33,7 +33,7 @@ def perform_hourly_pack_totals_analysis(df, book):
     hourly_pack_totals_sheet.append(header_row)
 
     # Calculate and write the total quantity for each hour and pack type
-    for hour in range(20, 24):
+    for hour in range(0, 7):
         hour_data = [hour]
 
         for pack_type, action_filter in pack_types.items():
